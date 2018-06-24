@@ -1,20 +1,26 @@
 'use strict';
 
+//like an initialize method, within a new class
 function Thermostat() {
+  //a constant, but not like Ruby's
   this.MINIMUM_TEMPERATURE = 10;
-  this.DEFAULT_TEMPERATURE = 20;
-  this.temperature = this.DEFAULT_TEMPERATURE;
+  this.temperature = 20;
   this.powerSavingMode = true;
   this.MAX_LIMIT_PSM_ON = 25;
   this.MAX_LIMIT_PSM_OFF = 32;
+  this.DEFAULT_TEMPERATURE = 20;
+  this.temperature = this.DEFAULT_TEMPERATURE;
   this.MEDIUM_ENERGY_USAGE_LIMIT = 18;
+
 }
 
+//Like a method
 Thermostat.prototype.getCurrentTemperature = function () {
-  return this.temperature;
+return this.temperature;
 };
 
 Thermostat.prototype.up = function () {
+  // like a guard condition
   if (this.isMaximumTemperature()) {
     return;
   }
@@ -22,6 +28,7 @@ Thermostat.prototype.up = function () {
 };
 
 Thermostat.prototype.down = function () {
+  //this is a sort of guard condition
   if (this.isMinimumTemperature()) {
     return;
   }
@@ -34,6 +41,7 @@ Thermostat.prototype.isMinimumTemperature = function () {
 
 Thermostat.prototype.isPowerSavingModeOn = function () {
   return this.powerSavingMode === true;
+ this
 };
 
 Thermostat.prototype.switchPowerSavingModeOff = function () {
@@ -45,12 +53,10 @@ Thermostat.prototype.switchPowerSavingModeOn = function () {
 };
 
 Thermostat.prototype.isMaximumTemperature = function () {
-  if (this.isPowerSavingModeOn()) {
-    return this.temperature === this.MAX_LIMIT_PSM_ON;
+  if (this.isPowerSavingModeOn() === false) {
+    return this.temperature === this.MAX_LIMIT_PSM_OFF;
   }
-    else {
-      return this.temperature === this.MAX_LIMIT_PSM_OFF;
-    }
+  return this.temperature === this.MAX_LIMIT_PSM_ON;
 };
 
 Thermostat.prototype.resetTemperature = function () {
